@@ -11,7 +11,7 @@ import Foundation
 // INPUT
 
 // Loop forever until valid input found
-var validInput = 0 // declared outside the loop, so we can use it AFTER the loop is finished
+var n = 0 // declared outside the loop, so we can use it AFTER the loop is finished
 
 while 1 == 1 {
     
@@ -44,16 +44,44 @@ while 1 == 1 {
     }
     
     // Input is valid, so assign it to the variable to be used outside this loop
-    validInput = givenInteger
+    n = givenInteger
     break // important - must be present to end the loop
     
 }
 
 // PROCESS
-// DEBUG text
-print("Input given was: \(validInput)")
+// Find the sum of divisors
+var sum = 1     // 1 is always a proper divisor
 
+// Find more divisors when the input is greater than 2
+if n > 2 {
+    
+    // Inspect between 2 and 1 less than n
+    for i in 2...n-1 {
+        
+        // When there is no remainder, i is a proper divisor of n
+        if n % i == 0 {
+            sum += i       // Add to the sum of proper divisors
+        }
+        
+    }
+    
+}
 
 // OUTPUT
-
+// Special case when input was 1
+if n == 1 {
+    print("1 is a deficient number.")
+} else {
+    
+    // Decide what type of number this is
+    if sum < n {
+        print("\(n) is a deficient number.")
+    } else if sum == n {
+        print("\(n) is a perfect number.")
+    } else {
+        print("\(n) is an abundant number.")
+    }
+    
+}
 
